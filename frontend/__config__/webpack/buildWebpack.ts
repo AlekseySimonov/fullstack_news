@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import { buildDevServer } from "./buildDevServer";
 import { buildPlugins } from "./buildPlugins";
 import { buildLoaders } from "./buildLoaders";
+import { buildResolvers } from './buildResolvers';
 
 export function buildWebpack(options: BuildOptions): webpack.Configuration {
 
@@ -25,8 +26,6 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
 		},
 		devtool: isDev ? 'inline-source-map' : false,
 		devServer: isDev ? buildDevServer(options) : undefined,
-		resolve: {
-            extensions: ['.tsx', '.ts', '.js', '.jsx'],
-        }
+		resolve: buildResolvers(options),
 	}
 }
