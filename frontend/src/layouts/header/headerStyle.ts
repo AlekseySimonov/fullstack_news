@@ -4,5 +4,6 @@ export const headerStyle: React.CSSProperties = {
 	paddingInline: 48,
 	lineHeight: '64px',
 	color: '#060606',
-	backgroundColor: '#f6f6f6',
+	background: '#f6f6f6',
+	justifyContent: 'space-between'
 };

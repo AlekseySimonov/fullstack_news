@@ -4,6 +4,7 @@ import themeLight from "./styles/lightTheme.json";
 import { RouterProvider } from 'react-router';
 import { layoutStyle } from './styles/layoutStyle';
 import { ContentLayout, FooterLayout, HeaderLayout } from '@/layouts';
+import '@/UI/assets/fonts/fonts.scss'
 
 export const App: React.FC = () => {
 

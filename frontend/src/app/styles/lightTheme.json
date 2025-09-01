@@ -9,22 +9,14 @@
     "colorTextSecondary": "#06060640",
     "colorBorder": "#06060640",
     "wireframe": true,
-    "colorError": "#ff4400"
+    "colorError": "#ff4400",
+    "fontFamily": "HelveticaNeue, Arial, sans-serif"
   },
   "components": {
-    "Menu": {
-      "itemSelectedColor": "rgb(255,255,255)",
-      "itemBg": "rgb(255,68,0)",
-      "itemColor": "rgb(246,246,246)",
-      "itemSelectedBg": "rgba(59,80,97,0)",
-      "itemHoverColor": "rgba(255,255,255,0.88)",
-      "subMenuItemSelectedColor": "rgb(252,253,255)",
-      "subMenuItemBg": "rgba(210,209,209,0.02)",
-      "itemActiveBg": "rgb(255,68,0)"
-    },
     "Typography": {
       "fontSizeHeading1": 100,
-      "fontSizeHeading2": 54
+      "fontSizeHeading2": 54,
+      "fontFamily": "HelveticaNeue, Arial, sans-serif"
     }
   }
 }
