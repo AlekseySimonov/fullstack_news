@@ -2,7 +2,6 @@
   "token": {
     "fontSize": 20,
     "borderRadius": 12,
-    "colorBgBase": "#f6f6f6",
     "colorPrimary": "#060606",
     "colorInfo": "#060606",
     "colorPrimaryBgHover": "#06060740",

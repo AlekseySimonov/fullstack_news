@@ -4,54 +4,77 @@ import { BuildOptions } from "./types";
 export function buildLoaders({ mode }: BuildOptions) {
 	const isDev = mode === "development";
 
-	return [
-
-		{
-			test: /\.tsx?$/,
-			use: [{ loader: 'ts-loader', options: { transpileOnly: true } }],
-			exclude: /node_modules/,
-		},
-
-		{
-			test: /\.module\.s[ac]ss$/i,
-			use: [
-				isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-				{
-					loader: "css-loader",
-					options: {
-						modules: {
-							localIdentName: isDev
-								? "[path][name]__[local]"
-								: "[hash:base64:8]"
-						},
-						sourceMap: isDev,
-					},
+	const assetLoader = {
+		test: /\.(png|jpe?g|gif|svg)$/i,
+		use: [
+			{
+				loader: 'file-loader',
+				options: {
+					name: '[path][name].[hash].[ext]',
 				},
-				"sass-loader",
-			],
-		},
+			},
+		],
+	};
 
-		{
-			test: /\.s[ac]ss$/i,
-			exclude: /\.module\.s[ac]ss$/i,
-			use: [
-				isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-				"css-loader",
-				"sass-loader",
-			],
+	const cssLoaderModules = {
+		loader: "css-loader",
+		options: {
+			modules: {
+				localIdentName: isDev ? "[local]__[hash:base64:5]" : '[hash:base64:8]',
+				exportLocalsConvention: "asIs",
+				namedExport: false,
+			},
 		},
+	};
 
-		{
-			test: /\.css$/i,
-			use: [
-				isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-				"css-loader"
-			]
+	const cssLoaderNoModules = {
+		loader: "css-loader",
+		options: {
+			modules: false,
 		},
+	};
 
-		{
-			test: /\.(png|jpg|jpeg|gif|svg)$/i,
-			type: "asset/resource"
-		}
+	const cssModuleLoader = {
+		test: /\.module\.css$/i,
+		use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, cssLoaderModules],
+	};
+
+	const cssGlobalLoader = {
+		test: /\.css$/i,
+		exclude: /\.module\.css$/i,
+		use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, cssLoaderNoModules],
+	};
+
+	const scssModuleLoader = {
+		test: /\.module\.s[ac]ss$/i,
+		use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, cssLoaderModules, "sass-loader"],
+	};
+
+	const scssGlobalLoader = {
+		test: /\.s[ac]ss$/i,
+		exclude: /\.module\.s[ac]ss$/i,
+		use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, cssLoaderNoModules, "sass-loader"],
+	};
+
+	const tsLoader = {
+		test: /\.tsx?$/,
+		use: [
+			{
+				loader: 'ts-loader',
+				options: {
+					transpileOnly: true
+				}
+			}
+		],
+		exclude: /node_modules/,
+	};
+
+	return [
+		assetLoader,
+		cssModuleLoader,
+		cssGlobalLoader,
+		scssModuleLoader,
+		scssGlobalLoader,
+		tsLoader,
 	];
 }
