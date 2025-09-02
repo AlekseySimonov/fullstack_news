@@ -9,7 +9,7 @@ import '@/UI/assets/fonts/fonts.scss'
 export const App: React.FC = () => {
 
 	return ((
-		<ConfigProvider theme={themeLight}>
+		<ConfigProvider theme={{...themeLight, cssVar: true }}>
 			<Flex gap="middle" wrap>
 				<Layout style={layoutStyle}>
 					<HeaderLayout />
