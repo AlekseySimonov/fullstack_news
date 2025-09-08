@@ -2,6 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const ArticleSchema = new Schema({
 	title: { type: String, required: true },
+	category: { type: String },
+	author: { type: String, required: true },
 	description: [
 		{
 			subtitle: { type: String },
@@ -11,7 +13,9 @@ const ArticleSchema = new Schema({
 	tags: {
 		type: [String],
 		set: tags => [...new Set(tags)]
-	}
-});
+	},
+},
+	{ timestamps: true }
+);
 
 export const Article = mongoose.model("Article", ArticleSchema);

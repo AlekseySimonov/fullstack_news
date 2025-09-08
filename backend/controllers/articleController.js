@@ -4,8 +4,67 @@ import mongoose from "mongoose";
 class ArticleController {
 	async getArticles(req, res) {
 		try {
-			const articles = await Article.find();
-			return res.json(articles);
+			const {
+				page = 1,
+				limit = 10,
+				search,
+				category,
+				tags,
+				dateFrom,
+				dateTo,
+				sortOrder = "desc",
+			} = req.query;
+
+			const pageNum = Number(page);
+			const limitNum = Number(limit);
+			const skip = (pageNum - 1) * limitNum;
+
+			const filter = {}
+
+			if (search) {
+				filter.$or = [
+					{ title: new RegExp(search, "i") },
+					{ category: new RegExp(search, "i") },
+					{ author: new RegExp(search, "i") },
+					{ "description.text": new RegExp(search, "i") }
+				];
+			}
+
+			if (dateFrom || dateTo) {
+				filter.createdAt = {};
+				if (dateFrom) filter.createdAt.$gte = new Date(dateFrom);
+				if (dateTo) filter.createdAt.$lte = new Date(dateTo);
+			}
+
+			if (category) {
+				filter.category = category;
+			}
+
+			if (tags) {
+				const tagsArray = Array.isArray(tags) ? tags : tags.split(",");
+				filter.tags = { $in: tagsArray };
+			}
+
+			const articlesCount = await Article.countDocuments(filter)
+			if (skip >= articlesCount) {
+				res.status(404).json({ message: "This page not found" })
+			}
+
+			const sortOption = sortOrder === "asc" ? 1 : -1;
+
+			const articles = await Article.find(filter)
+				.skip(skip)
+				.limit(limit)
+				.sort({ createdAt: sortOption });
+			return res.json({
+				data: articles,
+				pagination: {
+					total: articlesCount,
+					page,
+					limit,
+					totalPages: Math.ceil(articlesCount / limit),
+				},
+			});
 		} catch (err) {
 			console.error("Error in getArticles:", err);
 			return res.status(500).json({ message: "Server error", error: err.message });
