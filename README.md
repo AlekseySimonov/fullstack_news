@@ -4,7 +4,7 @@
 Состоит из двух независимых сервисов:
 
 - **frontend** — пользовательский интерфейс, сборка через Webpack.  
-- **backend** — REST API на Express, хранение данных в SQLite.
+- **backend** — REST API на Express с MongoDB (через Mongoose).
 
 ---
 
@@ -19,10 +19,13 @@ news/
 │  ├─ webpack.config.js
 │  ├─ package.json
 │  └─ tsconfig.json
-└─ backend/           # Node.js + Express API
-   ├─ index.js        # точка входа приложения
+└─ backend/            # Node.js + Express API
+   ├─ server.js        # точка входа
    ├─ package.json
-   └─ db.sqlite       # база данных SQLite
+   ├─ controllers/     # контроллеры API
+   ├─ models/          # mongoose-модели
+   └─ router/          # маршруты API
+   └─ .env             # конфигурация окружения
 
 ```
 
@@ -67,13 +70,21 @@ npm install
 ### Технологии
 - Node.js 20
 - Express 5
-- SQLite3 для хранения данных
-- body-parser для обработки JSON
+- MongoDB + Mongoose
+
+### Конфигурация 
+Для работы бэкенда создайте файл `.env` в папке `backend`
+```env
+PORT=4000
+DB_URL=mongodb://localhost:27017/fullstack_news # ссылка у разработчиков
+```
 
 ### Установка зависимостей
 ```bash
 cd backend
 npm install
+npm run dev   # запуск с nodemon
+npm start     # обычный запуск
 ```
 
 ### Скрипты 
@@ -81,8 +92,16 @@ npm install
 | Команда              | Описание                                          |
 | -------------------- | ------------------------------------------------- |
 | `npm start`          | Запуск сервера на Node.js                         |
+| `npm run dev`        | Запуск сервера с nodemon (автоперезапуск)         |
 
 ### Описание 
-- Точка входа — `index.js`
-- Подключение базы SQLite через `sqlite3`
-- API возвращает новости и позволяет добавлять записи
+- `server.js` — точка входа
+- `controllers/` — обработчики логики API
+- `models/` — mongoose-модели данных
+- `router/` — маршруты Express
+
+### Возможности API
+- Получение списка статей с пагинацией, фильтрацией и поиском
+- Добавление новых статей
+- Загрузка файлов (через express-fileupload)
+- Управление тегами, категориями, авторами
