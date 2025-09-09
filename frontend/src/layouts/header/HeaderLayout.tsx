@@ -1,6 +1,6 @@
 import { AutoComplete, Button, Input, Layout, Menu, MenuProps, Drawer, Row, Col } from "antd";
 import { headerStyle } from "./headerStyle";
-import { icons } from "@/UI/assets";
+import { icons } from "@/shared/assets";
 import {CloseOutlined, MenuOutlined} from "@ant-design/icons";
 import { useState } from "react";
 import { MenuDrawer } from "@/components";

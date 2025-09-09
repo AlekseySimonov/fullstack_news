@@ -1,0 +1,1 @@
+export { fetcher, queryClient } from "./queryClient";
