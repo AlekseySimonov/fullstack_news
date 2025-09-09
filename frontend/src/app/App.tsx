@@ -4,10 +4,11 @@ import themeLight from "./styles/lightTheme.json";
 import { RouterProvider } from 'react-router';
 import { layoutStyle } from './styles/layoutStyle';
 import { ContentLayout, FooterLayout, HeaderLayout } from '@/layouts';
-import '@/UI/assets/fonts/fonts.scss'
+import '@/shared/assets/fonts/fonts.scss'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/shared/api';
+import { appRouter } from './providers';
 
 export const App: React.FC = () => {
 
@@ -18,7 +19,7 @@ export const App: React.FC = () => {
 				<Flex gap="middle" wrap>
 					<Layout style={layoutStyle}>
 						<HeaderLayout />
-						<ContentLayout />
+						<RouterProvider router={appRouter} />
 						<FooterLayout />
 					</Layout>
 				</Flex>

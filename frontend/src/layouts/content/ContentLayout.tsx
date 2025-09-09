@@ -1,11 +1,12 @@
 import { Layout } from "antd";
 import { contentStyle } from "./contentStyle";
-import { MainPage } from "@/pages";
+import { Outlet } from "react-router";
+
 const { Content } = Layout;
 
 const ContentLayout: React.FC = () => (
 	<Content style={contentStyle}>
-		<MainPage/>
+		<Outlet />
 	</Content>
 )
 
