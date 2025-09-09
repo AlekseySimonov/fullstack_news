@@ -15,7 +15,8 @@
     "Typography": {
       "fontSizeHeading1": 100,
       "fontSizeHeading2": 54,
-      "fontFamily": "HelveticaNeue, Arial, sans-serif"
+      "fontFamily": "HelveticaNeue, Arial, sans-serif",
+      "lineHeight": 0
     },
     "Button": {
       "colorPrimary": "rgb(255,68,0)",
@@ -32,6 +33,12 @@
     },
     "Drawer": {
       "colorBgElevated": "rgb(255,68,0)"
+    },
+    "Tag": {
+      "marginXS": 8,
+      "borderRadiusSM": 2,
+      "lineWidth": 3,
+      "lineHeightSM": 2
     }
   }
 }

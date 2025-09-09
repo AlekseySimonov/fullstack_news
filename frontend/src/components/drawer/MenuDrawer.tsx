@@ -24,7 +24,6 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ open, onClose }) => {
 			width="100%"
 			style={{overflow: "hidden"}}
 			className={styles.drawer}
-			bodyStyle={{ overflow: "hidden" }}
 		>
 			<Row gutter={64} style={{overflow: "hidden"}}>
 				<Col span={12} className={styles["menu-left"]}>
