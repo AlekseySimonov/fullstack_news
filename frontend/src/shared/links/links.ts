@@ -24,3 +24,10 @@ export const policyLinks = [
 	{ title: "TERMS AND CONDITIONS", link: "#" },
 ];
 
+export const socialLinks = [
+	{ title: "INSTAGRAM", link: "#" },
+	{ title: "FACEBOOK", link: "#" },
+	{ title: "TWITTER", link: "#" },
+	{ title: "YOUTUBE", link: "#" },
+]
+
