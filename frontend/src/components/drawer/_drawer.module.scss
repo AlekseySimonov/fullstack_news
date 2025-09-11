@@ -1,41 +1,59 @@
-
 $text-light: #fff;
-$text-dark: #000;
 
 .drawer {
 	background: var(--ant-color-error);
 	color: $text-light;
 	padding: 40px;
+	line-height: 60px;
+	height: 1vh;
+	overflow-x: hidden;
 
-	.menu-left {
-		.menu-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			font-size: 40px;
-			font-weight: bold;
+	ul {
+		list-style: none;
+		padding: 0;
 
-			li {
-				margin: 20px 0;
-				cursor: pointer;
-				transition: opacity 0.3s;
+		li {
+			cursor: pointer;
+			transition: opacity 0.3s;
 
-				&:hover {
-					opacity: 0.7;
-				}
+			&:hover {
+				opacity: 0.7;
+			}
 
-				.badge {
-					background: $text-light;
-					color: var(--ant-color-error);
-					font-size: 14px;
-					border-radius: 10px;
-					padding: 2px 8px;
-					margin-left: 8px;
-				}
+			a {
+				color: $text-light;
+				text-decoration: none;
 			}
 		}
+	}
 
-		.social {
+	&_row {
+		overflow: hidden;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	&_logo {
+		display: flex;
+		justify-content: start;
+
+		img {
+			height: 80px;
+		}
+	}
+
+	&_left {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		li {
+			margin-bottom: 40px;
+			font-weight: 400;
+			font-size: clamp(16px, 2vw + 16px, 64px)
+		}
+
+		&__social {
 			margin-top: 40px;
 			font-size: 24px;
 			display: flex;
@@ -52,34 +70,35 @@ $text-dark: #000;
 		}
 	}
 
-	.menu-right {
+	&_list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		font-size: 40px;
+		font-weight: bold;
+	}
+
+	&_right {
+		:first-child {
+			margin-top: 0;
+		}
+
 		h4 {
-			margin-top: 40px;
+			margin-top: 64px;
 			font-weight: bold;
 			text-transform: uppercase;
 		}
 
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 10px 0;
-
-			li {
-				margin: 5px 0;
-				cursor: pointer;
-				transition: opacity 0.2s;
-
-				&:hover {
-					opacity: 0.7;
-				}
-			}
+		li {
+			font-size: 16px;
+			line-height: 200%;
 		}
 
-		.policy {
-			margin-top: 30px;
+		&__policy {
+			margin-top: 64px;
 		}
 
-		.subscribe {
+		&__subscribe {
 			margin-top: 30px;
 
 			input {
@@ -88,11 +107,57 @@ $text-dark: #000;
 		}
 	}
 
-	.close-btn {
+	&_closeBtn {
 		position: absolute;
 		top: 20px;
 		right: 20px;
 		font-size: 28px;
 		color: $text-light;
+	}
+
+	@media (max-width: 1200px) {
+		padding: 20px;
+
+		&_left li {
+			font-size: clamp(14px, 2vw + 12px, 48px);
+			margin-bottom: 24px;
+		}
+
+		&_right h4 {
+			margin-top: 32px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		&_row {
+			flex-direction: column;
+			width: 100%;
+		}
+
+		&_logo {
+			margin-bottom: 20px;
+		}
+
+		&_left,
+		&_right {
+			width: 100%;
+			margin-inline: 0 !important;
+			display: flex;
+			flex-direction: column;
+			max-width: none !important;
+
+			&__social {
+				margin-bottom: 20px;
+			}
+
+			li {
+				margin-bottom: 16px;
+			}
+		}
+		&_left{
+			li {
+				margin-bottom: 0;
+			}
+		}
 	}
 }

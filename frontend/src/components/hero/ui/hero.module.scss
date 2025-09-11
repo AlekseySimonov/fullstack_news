@@ -6,13 +6,16 @@
 	overflow: hidden;
 	padding-inline: 1rem;
 	margin-block: 120px;
+	@media (max-width: 768px) {
+		margin-block: 40px;
+	}
 
 	&__line {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
 		line-height: 1.1;
-		font-size: calc(16px + 4vw);
+		font-size: clamp(16px, 4vw + 16px, 100px);
 
 		h1 {
 			display: flex;
@@ -81,7 +84,6 @@
 		line-height: 1.4;
 		text-align: start;
 		opacity: 25%;
-		// flex: 1;
 		white-space: normal;
 		word-break: break-word;
 

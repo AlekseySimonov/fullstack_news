@@ -8,6 +8,8 @@ import {
 	CloseOutlined,
 } from "@ant-design/icons";
 import styles from "./_drawer.module.scss";
+import { icons } from "@/shared/assets";
+import { links } from "@/shared/links";
 
 interface MenuDrawerProps {
 	open: boolean;
@@ -22,22 +24,23 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ open, onClose }) => {
 			onClose={onClose}
 			open={open}
 			width="100%"
-			style={{overflow: "hidden"}}
 			className={styles.drawer}
 		>
-			<Row gutter={64} style={{overflow: "hidden"}}>
-				<Col span={12} className={styles["menu-left"]}>
-					<ul className={styles["menu-list"]}>
-						<li>FEATURES</li>
-						<li>POP CULTURE </li>
-						<li>DESIGN </li>
-						<li>FASHION</li>
-						<li>MUSIC</li>
-						<li>EVENTS </li>
-						<li>SHOP</li>
+			<Row gutter={64}  className={styles.drawer_row}>
+				<Col span={8} className={styles.drawer_logo}>
+					<img src={icons.logo} alt="Logo" className={styles.drawer_logo} />
+				</Col>
+
+				<Col span={8} className={styles.drawer_left}>
+					<ul className={styles.drawer_list}>
+						{links.menuLinks.map((link) => (
+							<li key={link.title}>
+								<a href={link.link}>{link.title}</a>
+							</li>
+						))}
 					</ul>
 
-					<div className={styles.social}>
+					<div className={styles.drawer_left__social}>
 						<FacebookOutlined />
 						<InstagramOutlined />
 						<WhatsAppOutlined />
@@ -45,32 +48,35 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ open, onClose }) => {
 					</div>
 				</Col>
 
-				<Divider
-					type="vertical"
-					style={{ height: "100%", position: "absolute", left: "50%" ,width: "2px"}}
-				/>
-
-				<Col span={12} className={styles["menu-right"]}>
+				<Col span={8} className={styles.drawer_right}>
 					<h4>INFORMATION</h4>
 					<ul>
-						<li>ABOUT US</li>
-						<li>CONTACT US</li>
-						<li>CAREERS</li>
+						{links.infoLinks.map((link) => (
+							<li key={link.title}>
+								<a href={link.link}>{link.title}</a>
+							</li>
+						))}
 					</ul>
+
 
 					<h4>PARTNERSHIPS</h4>
 					<ul>
-						<li>COMMUNITY</li>
-						<li>ADVERTISING</li>
-						<li>MEDIA PARTNER</li>
+						{links.partnershipLinks.map((link) => (
+							<li key={link.title}>
+								<a href={link.link}>{link.title}</a>
+							</li>
+						))}
 					</ul>
 
-					<ul className={styles.policy}>
-						<li>PRIVACY POLICY</li>
-						<li>TERMS AND CONDITIONS</li>
+					<ul className={styles.drawer_right__policy}>
+						{links.policyLinks.map((link) => (
+							<li key={link.title}>
+								<a href={link.link}>{link.title}</a>
+							</li>
+						))}
 					</ul>
 
-					<div className={styles.subscribe}>
+					<div className={styles.drawer_right__subscribe}>
 						<Input placeholder="Enter your mail" suffix="→" />
 					</div>
 				</Col>
@@ -80,7 +86,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ open, onClose }) => {
 				type="text"
 				icon={<CloseOutlined />}
 				onClick={onClose}
-				className={styles["close-btn"]}
+				className={styles.drawer_closeBtn}
 			/>
 
 		</Drawer>

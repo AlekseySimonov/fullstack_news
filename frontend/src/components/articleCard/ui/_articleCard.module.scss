@@ -1,6 +1,7 @@
 .card {
 	width: 328px;
 	height: 432px;
+	border: none;
 
 	&_img {
 		height: 240px;
@@ -38,7 +39,6 @@
 	&_tags{
 		overflow: hidden;
 		display: flex;
-		// gap: 8px;
 	}
 
 	&_footer {

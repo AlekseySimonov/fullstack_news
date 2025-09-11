@@ -1,54 +1,62 @@
-import { AutoComplete, Button, Input, Layout, Menu, MenuProps, Drawer, Row, Col } from "antd";
-import { headerStyle } from "./headerStyle";
+import { Button, Input, Layout, Menu, MenuProps, Tooltip } from "antd";
 import { icons } from "@/shared/assets";
-import {CloseOutlined, MenuOutlined} from "@ant-design/icons";
-import { useState } from "react";
+import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 import { MenuDrawer } from "@/components";
-const { Header } = Layout;
+import styles from "./__headerStyle.module.scss"
+import { links } from "@/shared/links";
 
-const items: MenuProps['items'] = [
-	{ key: '/features', label: 'FEATURES' },
-	{ key: '/pop-culture', label: 'POP CULTURE' },
-	{ key: '/design', label: 'DESIGN' },
-	{ key: '/fashion', label: 'FASHION' },
-	{ key: '/music', label: 'MUSIC' },
-	{ key: '/events', label: 'EVENTS' },
-];
+const { Header } = Layout;
 
 const HeaderLayout: React.FC = () => {
 	const [open, setOpen] = useState(false);
-	return (<Header style={headerStyle}>
-		<img src={icons.logo} alt="#" />
-		<AutoComplete
-			classNames={{ popup: { root: 'certain-category-search-dropdown' } }}
-			popupMatchSelectWidth={500}
-			style={{ width: 250 }}
-		>
-			<Input.Search
-				placeholder="Type keywords..."
-				allowClear
-				size="large"
-				style={{ width: '300px' }}
-			/>
-		</AutoComplete>
+	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1100);
 
-		<Menu
-			mode="horizontal"
-			items={items}
-		/>
-		<Button type="primary">
-			Sign in
-		</Button>
+	useEffect(() => {
+		const handleResize = () => setIsDesktop(window.innerWidth > 1100);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
-		<Button
-			type="text"
-			icon={<MenuOutlined />}
-			onClick={() => setOpen(true)}
-			// className={styles["menu-btn"]}
-		/>
+	const menuItems = links.menuLinks.map((link) => ({
+		key: link.link,
+		label: link.title
+	}));
 
-			<MenuDrawer open={open} onClose={() => setOpen(false)} />
-	</Header>)
-}
+	return (
+		<Header className={styles.header}>
+			<div className={styles.header_logo}>
+				<img src={icons.logo} alt="logo" />
+			</div>
 
-export default HeaderLayout
+			{isDesktop && (
+				<div className={styles.header_navitems}>
+					<Menu
+						mode="horizontal"
+						items={menuItems}
+						overflowedIndicator={null}
+					/>
+				</div>
+			)}
+
+			<div className={styles.header_actions}>
+				<Tooltip title="search">
+					<Button shape="circle" type="text" icon={<SearchOutlined />} />
+				</Tooltip>
+
+				<Button type="primary" danger>
+					Sign in
+				</Button>
+
+				<Button
+					type="text"
+					icon={<MenuOutlined />}
+					onClick={() => setOpen(true)}
+				/>
+				<MenuDrawer open={open} onClose={() => setOpen(false)} />
+			</div>
+		</Header>
+	);
+};
+
+export default HeaderLayout;

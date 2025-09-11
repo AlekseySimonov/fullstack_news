@@ -9,14 +9,22 @@
     "colorBorder": "#06060640",
     "wireframe": true,
     "colorError": "#ff4400",
-    "fontFamily": "HelveticaNeue, Arial, sans-serif"
+    "fontFamily": "HelveticaNeue, sans-serif",
+
+    "colorBgBase": "#f6f6f6",
+    "colorBgContainer": "#f6f6f6",
+    "colorBgElevated": "#f6f6f6",
+    "colorBgLayout": "#f6f6f6"
   },
   "components": {
     "Typography": {
       "fontSizeHeading1": 100,
       "fontSizeHeading2": 54,
       "fontFamily": "HelveticaNeue, Arial, sans-serif",
-      "lineHeight": 0
+      "lineHeight": 0,
+      "titleMarginTop": "0",
+      "titleMarginBottom": "0",
+      "fontWeightStrong": 400
     },
     "Button": {
       "colorPrimary": "rgb(255,68,0)",
@@ -38,7 +46,32 @@
       "marginXS": 8,
       "borderRadiusSM": 2,
       "lineWidth": 3,
-      "lineHeightSM": 2
+      "lineHeightSM": 2,
+      "defaultBg": "transparent"
+    },
+    "Button": {
+      "contentFontSize": 18,
+      "paddingInline": 24,
+      "paddingInlineLG": 24,
+      "fontSize": 18,
+      "primaryShadow": "",
+      "dangerShadow": "",
+      "defaultShadow": "",
+      "borderRadius": 24,
+      "paddingBlock": 8,
+      "controlHeight": 40,
+      "defaultBorderColor": "rgb(6,6,6)",
+      "defaultHoverColor": "rgb(246,246,246)",
+      "defaultHoverBg": "rgba(6,6,6,0.6)",
+      "defaultHoverBorderColor": "rgb(255,255,255)"
+    },
+    "Menu": {
+      "itemColor": "#060606",
+      "itemColorHover": "rgb(255,68,0)",
+      "itemFontSize": 16,
+      "itemPaddingInline": 12,
+      "bgColor": "transparent",
+      "borderWidth": 0
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Card, Tag } from 'antd';
+import { Card, Empty, Tag } from 'antd';
 import styles from "./_articleCard.module.scss"
 import { images } from '@/shared/assets';
 
@@ -22,12 +22,19 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       hoverable
       className={styles.card}
       cover={
-        <img
-          className={`${styles.card_img} ${image ? styles.card_img__cover : styles.card_img__scaleDown
-            }`}
-          alt="cover"
-          src={image || images.emptyImage}
-        />
+        image ? (
+          <img
+            className={`${styles.card_img} ${styles.card_img__cover}`}
+            alt="cover"
+            src={image}
+          />
+        ) : (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_DEFAULT}
+              imageStyle={{ height: 240 }}
+              description={false}
+            />
+        )
       }
       classNames={{
         body: styles.card_body
