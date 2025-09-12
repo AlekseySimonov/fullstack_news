@@ -14,7 +14,7 @@ class ArticleController extends BaseController<IArticle> {
 
       const filter: Record<string, unknown> = {};
 
-      if (category) filter.category = category;
+      if (category) filter.category = { $regex: `^${category}$`, $options: "i" }
 
       if (search) {
         filter.$or = [

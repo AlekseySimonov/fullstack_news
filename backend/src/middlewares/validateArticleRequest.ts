@@ -10,7 +10,7 @@ export const validateArticleRequest = (req: Request, res: Response, next: NextFu
 		});
 	}
 
-	if (category === 'events') {
+	if (category?.toLowerCase() === 'events') {
 		if (!ticketLink || typeof ticketLink !== 'string' || !/^https?:\/\/.+/.test(ticketLink)) {
 			return res.status(400).json({
 				message: 'ticketLink is required and must be a valid URL for events',

@@ -15,7 +15,7 @@ const ArticleSchema = new Schema(
       required: true,
     },
     tags: {
-      type: { String },
+      type: [String] ,
       set: (tags: string[]) => [...new Set(tags)],
     },
     ticketLink: { type: String },
