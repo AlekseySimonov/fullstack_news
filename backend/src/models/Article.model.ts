@@ -18,6 +18,8 @@ const ArticleSchema = new Schema(
       type: { String },
       set: (tags: string[]) => [...new Set(tags)],
     },
+    ticketLink: { type: String },
+    isEditorsPick: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

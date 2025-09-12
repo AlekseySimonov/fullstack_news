@@ -1,4 +1,5 @@
 import { body, param } from 'express-validator';
+import { CONSTANTS } from '../services';
 
 const baseRules = {
   title: body('title')
@@ -15,6 +16,7 @@ const baseRules = {
 
   category: body('category')
     .optional()
+    .isIn(CONSTANTS.CATEGORIES)
     .isString()
     .withMessage('Category must be a string'),
 
@@ -41,6 +43,16 @@ const baseRules = {
     .withMessage('Tags must be an array of strings')
     .custom((arr) => arr.every((t: unknown) => typeof t === 'string'))
     .withMessage('Each tag must be a string'),
+
+  ticketLink: body('ticketLink')
+    .optional()
+    .isURL()
+    .withMessage('ticketLink must be a valid URL'),
+
+  isEditorsPick: body('isEditorsPick')
+    .optional()
+    .isBoolean()
+    .withMessage('isEditorsPick must be a boolean'),
 };
 
 export const createArticleValidator = [
@@ -50,6 +62,8 @@ export const createArticleValidator = [
   baseRules.description,
   baseRules.content,
   baseRules.tags,
+  baseRules.ticketLink,
+  baseRules.isEditorsPick,
 ];
 
 export const updateArticleValidator = [
@@ -60,4 +74,6 @@ export const updateArticleValidator = [
   baseRules.description.optional(),
   baseRules.content.optional(),
   baseRules.tags.optional(),
+  baseRules.ticketLink.optional(),
+  baseRules.isEditorsPick.optional(),
 ];
