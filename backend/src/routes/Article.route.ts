@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { articleController } from '../controllers';
 import { validateRequest } from './../middlewares/validateRequest';
 import { articleValidators } from '../validators';
-import { validateArticleRequest } from '../middlewares';
+import { pagination, validateArticleRequest } from '../middlewares';
 
 const articleRouter = Router();
 
@@ -13,8 +13,20 @@ articleRouter.post(
   validateRequest,
   articleController.create,
 );
-articleRouter.get('/', articleController.getAll);
-articleRouter.get('/:id', articleController.getOne);
+
+articleRouter.get(
+  '/',
+  articleValidators.query,
+  validateRequest,
+  pagination(["category", "tags", "createdAt", "title", "isEditorsPick"]),
+  articleController.getAll
+);
+
+articleRouter.get(
+  '/:id',
+  articleController.getOne
+);
+
 articleRouter.put(
   '/:id',
   articleValidators.update,

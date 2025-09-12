@@ -20,8 +20,8 @@ export abstract class BaseController<T> {
 
   getAll = async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const items = await this.model.find();
-      return res.json(items);
+      const data = await this.model.find();
+      return res.json(data);
     } catch (err) {
       next(err);
     }
