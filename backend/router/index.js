@@ -1,1 +1,0 @@
-export {default as articlesRouter} from "./articlesRouter.js"
