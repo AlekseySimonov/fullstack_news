@@ -12,20 +12,33 @@
 
 ```
 news/
+│
 ├─ frontend/          # React + TypeScript приложение
 │  ├─ src/            # исходный код фронтенда
 │  ├─ public/         # статические файлы (index.html, favicon и др.)
 │  ├─ __config__/     # конфигурационные файлы приложения
 │  ├─ webpack.config.js
 │  ├─ package.json
-│  └─ tsconfig.json
-└─ backend/            # Node.js + Express API
-   ├─ server.js        # точка входа
+│  ├─ tsconfig.json
+│  └─ .env             # конфигурация окружения
+│
+└─ backend/                  # Node.js + Express API (TypeScript)
+   ├─ src/
+   │  ├─ controllers/        # контроллеры API
+   │  ├─ middlewares/        # глобальные и кастомные middleware
+   │  ├─ models/             # mongoose-модели
+   │  ├─ routes/             # маршруты Express
+   │  ├─ services/           # бизнес-логика, работа с данными
+   │  ├─ types/              # общие типы и интерфейсы
+   │  ├─ utils/              # вспомогательные утилиты
+   │  ├─ validators/         # express-validator схемы
+   │  └─ index.ts            # точка входа в приложение
+   │
+   ├─ __config__/            # конфигурация (eslint, prettier, jest, nodemon)
+   ├─ dist/                  # собранные JS-файлы после компиляции
    ├─ package.json
-   ├─ controllers/     # контроллеры API
-   ├─ models/          # mongoose-модели
-   └─ router/          # маршруты API
-   └─ .env             # конфигурация окружения
+   ├─ tsconfig.json
+   └─ .env                   # переменные окружения
 
 ```
 
@@ -71,37 +84,37 @@ npm install
 - Node.js 20
 - Express 5
 - MongoDB + Mongoose
+- express-validator
+- Jest + ts-jest для тестов
 
 ### Конфигурация 
 Для работы бэкенда создайте файл `.env` в папке `backend`
 ```env
 PORT=4000
 DB_URL=mongodb://localhost:27017/fullstack_news # ссылка у разработчиков
+SERVER_URL = http://localhost
 ```
 
 ### Установка зависимостей
 ```bash
 cd backend
 npm install
-npm run dev   # запуск с nodemon
-npm start     # обычный запуск
 ```
 
 ### Скрипты 
 
 | Команда              | Описание                                          |
 | -------------------- | ------------------------------------------------- |
-| `npm start`          | Запуск сервера на Node.js                         |
-| `npm run dev`        | Запуск сервера с nodemon (автоперезапуск)         |
-
-### Описание 
-- `server.js` — точка входа
-- `controllers/` — обработчики логики API
-- `models/` — mongoose-модели данных
-- `router/` — маршруты Express
+| `npm start`          | Запуск собранного сервера (dist/index.js)         |
+| `npm run dev`        | Запуск с nodemon + ts-node (автоперезапуск)       |
+| `npm run lint`       | Проверка кода ESLint                              |
+| `npm run format`     | Форматирование Prettier                           |
+| `npm run test`       | Запуск тестов (Jest + ts-jest)                    |
 
 ### Возможности API
-- Получение списка статей с пагинацией, фильтрацией и поиском
-- Добавление новых статей
-- Загрузка файлов (через express-fileupload)
-- Управление тегами, категориями, авторами
+- Получение списка статей с пагинацией и фильтрацией
+- Получение статьи по ID
+- Создание, обновление и удаление статьи
+- Управление тегами, категориями и авторами
+- Валидация входящих данных через express-validator
+- Единая обработка ошибок через errorHandler
