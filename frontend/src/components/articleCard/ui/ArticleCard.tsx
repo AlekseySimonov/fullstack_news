@@ -1,6 +1,6 @@
 import { Card, Empty, Tag } from 'antd';
 import styles from "./_articleCard.module.scss"
-import { images } from '@/shared/assets';
+import { formatDate } from '@/shared/utils';
 
 interface ArticleCardProps {
   title: string
@@ -47,7 +47,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       </div>}
       <h3>{title}</h3>
       <div className={styles.card_footer}>
-        <div className={styles.card_footer__date}>{updateDate}</div>
+        {updateDate && <div className={styles.card_footer__date}>{formatDate(updateDate)}</div>}
         <div className={styles.card_footer__author}>By <strong>{author}</strong></div>
       </div>
     </Card>

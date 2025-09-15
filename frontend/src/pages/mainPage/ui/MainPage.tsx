@@ -6,15 +6,10 @@ import { CategoryBlock } from "@/modules";
 
 const MainPage: React.FC = () => {
 
-  const { data: articles } = useQuery({
-    queryKey: ["articles"],
-    queryFn: () => fetcher("/articles/"),
-  });
-
   return (
     <div className={styles.main}>
       <Hero />
-      <CategoryBlock title="Features"/>
+      <CategoryBlock title="Features" category="features"/>
     </div>
     
   )

@@ -1,1 +1,1 @@
-export { CategoryBlock } from "./categoryBlock";
+export { CategoryBlock } from "./articles";
