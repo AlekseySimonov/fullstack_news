@@ -3,11 +3,11 @@ import React from 'react'
 import styles from "./_categoryBlock.module.scss"
 import { Button, Typography } from 'antd'
 import { useArticles } from '../api'
-interface CategoryBlockProps {
+interface CategoryListProps {
 	title: string,
 	category: string,
 }
-const CategoryBlock: React.FC<CategoryBlockProps> = ({ title, category }) => {
+const CategoryList: React.FC<CategoryListProps> = ({ title, category }) => {
 	const { Title } = Typography;
 
 	const { data: articles } = useArticles({category}) ?? []
@@ -28,6 +28,7 @@ const CategoryBlock: React.FC<CategoryBlockProps> = ({ title, category }) => {
 						author={article.author}
 						updateDate={article.updatedAt}
 						tags={article.tags}
+						size='md'
 					/>
 				))}
 			</div>
@@ -35,4 +36,4 @@ const CategoryBlock: React.FC<CategoryBlockProps> = ({ title, category }) => {
 	)
 }
 
-export default CategoryBlock
+export default CategoryList

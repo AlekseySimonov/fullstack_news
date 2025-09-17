@@ -72,6 +72,9 @@
       "itemPaddingInline": 12,
       "bgColor": "transparent",
       "borderWidth": 0
+    },
+    "Carousel": {
+      "colorBgContainer": "rgb(6,6,6)"
     }
   }
 }

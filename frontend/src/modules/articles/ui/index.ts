@@ -1,1 +1,2 @@
-export {default as CategoryBlock} from "./CategoryBlock"
+export { default as CategoryList } from "./CategoryList"
+export { default as EventsCarousel} from "./EventsCarousel"

@@ -1,10 +1,27 @@
 .card {
-	width: 328px;
-	height: 432px;
 	border: none;
 
+	&_md {
+		width: 328px;
+		height: 432px;
+		.card_img {
+			height: 240px;
+		}
+	}
+
+	&_sm {
+		width: 444px;
+	}
+
+	&_lg {
+		width: 560px;
+		height: 628px;
+		.card_img {
+			height: 410px;
+		}
+	}
+
 	&_img {
-		height: 240px;
 		border-radius: 8px;
 		width: 100%;
 		object-fit: cover;
@@ -36,7 +53,7 @@
 		}
 	}
 
-	&_tags{
+	&_tags {
 		overflow: hidden;
 		display: flex;
 	}

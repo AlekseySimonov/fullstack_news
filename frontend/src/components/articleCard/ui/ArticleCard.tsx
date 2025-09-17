@@ -8,37 +8,40 @@ interface ArticleCardProps {
   tags?: string[]
   author?: string
   updateDate?: string
+  size?: 'sm' | 'md' | 'lg'
 }
 const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
   image,
   tags,
   author,
-  updateDate
+  updateDate,
+  size = 'md'
 }) => {
   const { Meta } = Card;
+  const renderCover = () => {
+    if (size === 'sm') return null;
+    return image ? (
+      <img
+        className={`${styles.card_img} ${styles.card_img__cover}`}
+        alt="cover"
+        src={image}
+      />
+    ) : (
+      <Empty
+        image={Empty.PRESENTED_IMAGE_DEFAULT}
+        imageStyle={{ height: 240 }}
+        description={false}
+      />
+    );
+  };
+
   return (
     <Card
       hoverable
-      className={styles.card}
-      cover={
-        image ? (
-          <img
-            className={`${styles.card_img} ${styles.card_img__cover}`}
-            alt="cover"
-            src={image}
-          />
-        ) : (
-            <Empty
-              image={Empty.PRESENTED_IMAGE_DEFAULT}
-              imageStyle={{ height: 240 }}
-              description={false}
-            />
-        )
-      }
-      classNames={{
-        body: styles.card_body
-      }}
+      className={`${styles.card} ${styles[`card_${size}`]}`}
+      cover={renderCover()}
+      classNames={{ body: styles.card_body }}
     >
       {tags && <div className={styles.card_tags}>
         {tags.map((tag, key) => (
