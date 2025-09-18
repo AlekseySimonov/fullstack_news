@@ -14,13 +14,20 @@
 news/
 │
 ├─ frontend/          # React + TypeScript приложение
-│  ├─ src/            # исходный код фронтенда
-│  ├─ public/         # статические файлы (index.html, favicon и др.)
-│  ├─ __config__/     # конфигурационные файлы приложения
+│  ├─ src/
+│  │  ├─ app/                # лобальные конфиги, провайдеры store, маршруты
+│  │  ├─ pages/              # страницы приложения (например, `ArticlesPage`)
+│  │  ├─ layouts/            # обёртки страниц, header, footer, sidebar
+│  │  ├─ modules/            # конкретные фичи, которые могут содержать UI, логику и api
+│  │  ├─ components/         # переиспользуемые UI-компоненты (кнопки, карточки, списки)
+│  │  ├─ shared/             # общие типы, утилиты, иконки, изображения, константы
+│  │  └─ index.ts            # исходный код фронтенда
+│  ├─ public/                # статические файлы (index.html, favicon и др.)
+│  ├─ __config__/            # конфигурационные файлы приложения
 │  ├─ webpack.config.js
 │  ├─ package.json
 │  ├─ tsconfig.json
-│  └─ .env             # конфигурация окружения
+│  └─ .env                   # конфигурация окружения
 │
 └─ backend/                  # Node.js + Express API (TypeScript)
    ├─ src/
