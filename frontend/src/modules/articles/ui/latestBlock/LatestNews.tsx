@@ -1,8 +1,7 @@
-import { Button } from "antd"
-import Title from "antd/es/typography/Title"
 import styles from "./_latestNews.module.scss"
-import { useArticles } from "../api"
 import { ArticleCard, ImageCard } from "@/components"
+import { useArticles } from "../../api"
+import BaseBlock from "../baseBlock/BaseBlock"
 
 interface LatestNewsProps {
 	title: string,
@@ -13,16 +12,11 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 
 	const { data: articles } = useArticles() ?? []
 
-	if (!articles) return null
+	if (!articles || !articles.length) return null
 
 	return (
-		<div className={styles.block}>
-			<div className={styles.block_header}>
-				<Title level={3}>{title}</Title>
-				<Button type="default">View all</Button>
-			</div>
-			<div>
-				<div className={styles.block_start}>
+			<BaseBlock title={title}>
+				<div className={styles.start}>
 					<ImageCard
 						key={articles[0]._id}
 						title={articles[0].title}
@@ -30,7 +24,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 						date={articles[0].updatedAt}
 						tags={articles[0].tags}
 					/>
-					<div className={styles.block_start__list}>
+					<div className={styles.start__list}>
 						{articles.slice(0, 3).map(article => (
 							<ArticleCard
 								key={article._id}
@@ -43,7 +37,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 						))}
 					</div>
 				</div>
-				<div className={styles.block_end}>
+				<div className={styles.end}>
 					{articles.slice(3, 6).map(article => (
 						<ArticleCard
 							key={article._id}
@@ -55,8 +49,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 						/>
 					))}
 				</div>
-			</div>
-		</div>
+			</BaseBlock>
 	)
 }
 

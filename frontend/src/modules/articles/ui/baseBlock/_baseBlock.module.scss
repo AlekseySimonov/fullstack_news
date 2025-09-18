@@ -1,0 +1,15 @@
+.block {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	&_header {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+
+		p {
+			font-size: 1.6rem;
+		}
+	}
+}
