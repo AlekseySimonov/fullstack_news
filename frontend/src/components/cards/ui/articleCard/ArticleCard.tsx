@@ -1,24 +1,16 @@
 import { Card, Empty, Tag } from 'antd';
 import styles from "./_articleCard.module.scss"
 import { formatDate } from '@/shared/utils';
+import { ArticleCardProps } from '../../model/types';
 
-interface ArticleCardProps {
-  title: string
-  image?: string
-  tags?: string[]
-  author?: string
-  updateDate?: string
-  size?: 'sm' | 'md' | 'lg'
-}
 const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
   image,
   tags,
   author,
-  updateDate,
+  date,
   size = 'md'
 }) => {
-  const { Meta } = Card;
   const renderCover = () => {
     if (size === 'sm') return null;
     return image ? (
@@ -43,14 +35,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       cover={renderCover()}
       classNames={{ body: styles.card_body }}
     >
-      {tags && <div className={styles.card_tags}>
+      {tags && <div className={styles.tags}>
         {tags.map((tag, key) => (
-          <Tag key={key}>{tag}</Tag>
+          <Tag key={key} className={styles.tag}>{tag}</Tag>
         ))}
       </div>}
       <h3>{title}</h3>
       <div className={styles.card_footer}>
-        {updateDate && <div className={styles.card_footer__date}>{formatDate(updateDate)}</div>}
+        {date && <div className={styles.card_footer__date}>{formatDate(date)}</div>}
         <div className={styles.card_footer__author}>By <strong>{author}</strong></div>
       </div>
     </Card>

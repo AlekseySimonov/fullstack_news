@@ -26,7 +26,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ title, category }) => {
 						key={article._id}
 						title={article.title}
 						author={article.author}
-						updateDate={article.updatedAt}
+						date={article.updatedAt}
 						tags={article.tags}
 						size='md'
 					/>

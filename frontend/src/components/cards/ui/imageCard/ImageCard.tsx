@@ -1,0 +1,62 @@
+import { Card, Empty, Tag } from "antd"
+import styles from "./_imageCard.module.scss"
+import { formatDate } from "@/shared/utils"
+import { ImageCardProps } from "../../model/types";
+
+const renderCover = (image: string | undefined) => {
+	if (!image) {
+		return (
+			<div className={styles.card_img__wrapper}>
+				<Empty
+					image={Empty.PRESENTED_IMAGE_DEFAULT}
+					imageStyle={{ height: '100%' }}
+					description={false}
+					className={`${styles.card_img} ${styles.card_img__cover}`}
+				/>
+				<div className={styles.card_img__overlay} />
+			</div>
+		);
+	}
+
+	return (
+		<div className={styles.card_img__wrapper}>
+			<img
+				className={`${styles.card_img} ${styles.card_img__cover}`}
+				alt="cover"
+				src={image}
+			/>
+			<div className={styles.card_img__overlay} />
+		</div>
+	);
+};
+const ImageCard: React.FC<ImageCardProps> = ({
+	title,
+	tags,
+	author,
+	date,
+	image
+}) => {
+	return (
+		<Card hoverable className={styles.card} classNames={{ body: styles.body }}>
+			{renderCover(image)}
+			<div className={styles.card_content}>
+				{tags && (
+					<div className={styles.tags}>
+						{tags.map((tag, key) => (
+							<Tag key={key} className={styles.tag}>{tag}</Tag>
+						))}
+					</div>
+				)}
+
+				<h3>{title}</h3>
+
+				<div className={styles.body_footer}>
+					{date && <div className={styles.body_footer__date}>{formatDate(date)}</div>}
+					<div className={styles.body_footer__place}>By <strong>{author}</strong></div>
+				</div>
+			</div>
+		</Card>
+	)
+}
+
+export default ImageCard

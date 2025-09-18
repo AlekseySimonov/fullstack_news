@@ -51,7 +51,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 										key={article._id}
 										title={article.title}
 										author={article.author}
-										updateDate={article.updatedAt}
+										date={article.updatedAt}
 										tags={article.tags}
 										size="lg"
 									/>

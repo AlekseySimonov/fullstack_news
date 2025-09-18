@@ -1,2 +1,1 @@
-export { EventsCarousel } from "./articles/ui";
-export { CategoryList } from "./articles";
+export { LatestNews, EventsCarousel, CategoryList } from "./articles";

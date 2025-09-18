@@ -1,1 +1,1 @@
-export { CategoryList } from "./ui";
+export { LatestNews, CategoryList, EventsCarousel } from "./ui";

@@ -1,15 +1,9 @@
 import { Button, Card, Tag } from "antd"
 import styles from "./_eventCard.module.scss"
 import { formatDate } from "@/shared/utils"
-import { RightCircleOutlined } from '@ant-design/icons'
+import { RightOutlined } from '@ant-design/icons'
+import { EventCardProps } from "../../model/types"
 
-interface EventCardProps {
-	title: string
-	ticketLink?: string
-	tags?: string[]
-	place?: string
-	date?: string
-}
 const EventCard: React.FC<EventCardProps> = ({
 	title,
 	ticketLink,
@@ -19,9 +13,9 @@ const EventCard: React.FC<EventCardProps> = ({
 }) => {
 	return (
 		<Card hoverable className={styles.card} classNames={{ body: styles.body }}>
-			{tags && <div className={styles.body_tags}>
+			{tags && <div className={styles.tags}>
 				{tags.map((tag, key) => (
-					<Tag key={key} className={styles.body_tag}>{tag}</Tag>
+					<Tag key={key} className={styles.tag}>{tag}</Tag>
 				))}
 			</div>}
 			<h3>{title}</h3>
@@ -29,15 +23,19 @@ const EventCard: React.FC<EventCardProps> = ({
 				<Button className={styles.btnTicket}
 					type="default"
 					ghost
-					block
 					href={ticketLink}
-					target="_blank"
-					rel="noopener noreferrer"
 					disabled={!ticketLink}
 				>
 					By Ticket
 				</Button>
-				<RightCircleOutlined style={{ fontSize: '40px' }} />
+				<Button className={styles.btnTicket}
+					ghost
+					shape="circle"
+					href={ticketLink}
+					disabled={!ticketLink}
+				>
+					<RightOutlined />
+				</Button>
 			</div>
 
 			<div className={styles.body_footer}>
