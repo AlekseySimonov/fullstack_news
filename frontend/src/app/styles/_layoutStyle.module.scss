@@ -1,0 +1,22 @@
+@use '@/shared/styles/breakpoints' as *;
+
+.layout {
+	overflow: hidden;
+	width: calc(50% - 8px);
+	max-width: 1372px;
+	margin-inline: auto;
+	padding-inline: 32px;
+	gap: 80px;
+
+	@include respond-to(tablet) {
+		width: 100%;
+		padding-inline: 24px;
+		gap: 40px;
+	}
+
+	@include respond-to(mobile) {
+		width: 100%;
+		padding-inline: 16px;
+		gap: 20px;
+	}
+}

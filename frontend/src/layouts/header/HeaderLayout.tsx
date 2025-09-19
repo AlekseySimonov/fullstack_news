@@ -1,22 +1,17 @@
 import { Button, Input, Layout, Menu, MenuProps, Tooltip } from "antd";
 import { icons } from "@/shared/assets";
 import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MenuDrawer } from "@/components";
 import styles from "./__headerStyle.module.scss"
 import { links } from "@/shared/links";
+import { useBreakpoint } from "@/shared/hooks";
 
 const { Header } = Layout;
 
 const HeaderLayout: React.FC = () => {
 	const [open, setOpen] = useState(false);
-	const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1100);
-
-	useEffect(() => {
-		const handleResize = () => setIsDesktop(window.innerWidth > 1100);
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
+	const bp = useBreakpoint();
 
 	const menuItems = links.menuLinks.map((link) => ({
 		key: link.link,
@@ -29,7 +24,7 @@ const HeaderLayout: React.FC = () => {
 				<img src={icons.logo} alt="logo" />
 			</div>
 
-			{isDesktop && (
+			{bp !== "mobile" && (
 				<div className={styles.header_navitems}>
 					<Menu
 						mode="horizontal"
