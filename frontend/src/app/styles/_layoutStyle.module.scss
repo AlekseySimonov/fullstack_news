@@ -1,7 +1,8 @@
 @use '@/shared/styles/breakpoints' as *;
 
 .layout {
-	overflow: hidden;
+	overflow: visible;
+	position: relative;
 	width: calc(50% - 8px);
 	max-width: 1372px;
 	margin-inline: auto;

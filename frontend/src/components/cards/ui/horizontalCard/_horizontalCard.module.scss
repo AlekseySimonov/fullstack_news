@@ -1,36 +1,79 @@
 @use '../mixins' as *;
+@use '@/shared/styles/breakpoints' as *;
 
-.card{
+.card {
 	border: none;
+	background-color: inherit;
 	@include card-base(100%);
+
+	&_body {
+		@include card-body($padding-inline: 10px, $padding-block: 10px);
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+
+		@include respond-to(desktop) {
+			flex-direction: row;
+			gap: 20px;
+			align-items: flex-start;
+		}
+	}
+
 	&_img {
-		min-height: 180px;
-		height: 100%;
+		min-height: 320px;
 		object-fit: cover;
 		display: block;
 		flex: 0 0 30%;
-		margin-block: auto;
+
+		@include respond-to(mobile) {
+			min-height: 180px;
+			flex: 0 0 100%;
+		}
 	}
 
-	&_body {
-		@include card-body($padding-inline: 10px,$padding-block: 10px);
-		flex-direction: row;
-		gap: 16px;
-	}
-
-	&_content{
+	&_content {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		gap: 20px;
 		min-width: 0;
+	}
+
+	&_text {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		h4 {
+			font-weight: 500;
+			margin: 0;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			text-overflow: ellipsis;
+		}
+
+		p {
+			margin: 0;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 5;
+			text-overflow: ellipsis;
+		}
+
+		@include respond-to(desktop) {
+			flex: 0 0 30%;
+		}
 	}
 
 	&_footer {
 		flex-direction: column;
 		gap: 8px;
 		@include card-footer();
-		&{
+
+		@include respond-to(mobile) {
 			margin-top: auto;
 		}
 	}

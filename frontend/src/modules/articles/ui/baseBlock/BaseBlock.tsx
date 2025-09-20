@@ -1,4 +1,4 @@
-import { Button, Typography } from "antd"
+import { Button } from "antd"
 import styles from "./_baseBlock.module.scss"
 import { ReactNode } from "react"
 
@@ -11,17 +11,15 @@ const BaseBlock: React.FC<BaseBlockProps> = ({
 	title,
 	children
 }) => {
-	const { Title } = Typography
 
 	return (
 		<div className={styles.block}>
 			<div className={styles.block_header}>
-				<Title level={3}>{title}</Title>
+				<h3>{title}</h3>
 				<Button type="default">View all</Button>
 			</div>
 			{children}
 		</div>
-
 	)
 }
 

@@ -1,3 +1,5 @@
+import { ArticleContentBlock } from "@/shared/types";
+
 export interface BaseCardProps {
 	title: string;
 	tags?: string[];
@@ -8,6 +10,7 @@ export interface ArticleCardProps extends BaseCardProps {
 	image?: string
 	author?: string
 	size?: 'sm' | 'md' | 'lg'
+	content?: ArticleContentBlock[];
 }
 
 export interface ImageCardProps extends BaseCardProps {
