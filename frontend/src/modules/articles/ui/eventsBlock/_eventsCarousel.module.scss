@@ -1,10 +1,15 @@
+@use "@/shared/styles/breakpoints" as *;
+
 .embla {
-	max-width: 140%;
+	max-width: 100%;
 	margin: auto;
 	overflow: visible;
 	--slide-height: 19rem;
 	--slide-spacing: 10px;
 	--slide-size: max-content;
+	@include respond-to(mobile) {
+		--slide-size: 90%;
+	}
 }
 
 .embla__viewport {

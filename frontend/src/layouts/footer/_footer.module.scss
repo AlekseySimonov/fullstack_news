@@ -1,3 +1,5 @@
+@use "@/shared/styles/breakpoints" as *;
+
 .footer {
 	padding: 34px;
 	line-height: 60px;
@@ -87,8 +89,10 @@
 		}
 	}
 
-	@media (max-width: 768px) {
-		padding: 20px;
+	@include respond-to(mobile) {
+		&_left {
+			padding-left: 0 !important;
+		}
 		&_row {
 			flex-direction: column;
 			width: 100%;

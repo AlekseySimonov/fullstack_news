@@ -4,43 +4,37 @@ import { formatDate } from "@/shared/utils"
 import { RightOutlined } from '@ant-design/icons'
 import { EventCardProps } from "../../model/types"
 
-const EventCard: React.FC<EventCardProps> = ({
-	title,
-	ticketLink,
-	tags,
-	place,
-	date
-}) => {
+const EventCard: React.FC<EventCardProps> = (props) => {
 	return (
 		<Card hoverable className={styles.card} classNames={{ body: styles.body }}>
-			{tags && <div className={styles.tags}>
-				{tags.map((tag, key) => (
+			{props.tags && <div className={styles.tags}>
+				{props.tags.map((tag, key) => (
 					<Tag key={key} className={styles.tag}>{tag}</Tag>
 				))}
 			</div>}
-			<h3>{title}</h3>
+			<h3>{props.title}</h3>
 			<div className={styles.btn}>
 				<Button className={styles.btnTicket}
 					type="default"
 					ghost
-					href={ticketLink}
-					disabled={!ticketLink}
+					href={props.ticketLink}
+					disabled={!props.ticketLink}
 				>
 					By Ticket
 				</Button>
 				<Button className={styles.btnTicket}
 					ghost
 					shape="circle"
-					href={ticketLink}
-					disabled={!ticketLink}
+					href={props.ticketLink}
+					disabled={!props.ticketLink}
 				>
 					<RightOutlined />
 				</Button>
 			</div>
 
 			<div className={styles.body_footer}>
-				{date && <div className={styles.body_footer__date}>{formatDate(date)}</div>}
-				<div className={styles.body_footer__place}>At <strong>{place}</strong></div>
+				{props.date && <div className={styles.body_footer__date}>{formatDate(props.date)}</div>}
+				<div className={styles.body_footer__place}>At <strong>{props.place}</strong></div>
 			</div>
 		</Card>
 	)

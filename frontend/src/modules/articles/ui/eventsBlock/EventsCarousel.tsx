@@ -27,29 +27,29 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 			<section className={styles.embla}>
 				<div className={styles.embla__viewport} ref={emblaRef}>
 					<div className={styles.embla__container}>
-						<div className={styles.embla__slide}>
-							<EventCard
-								key={articles[0]._id}
-								title={articles[0].title}
-								place={articles[0].author}
-								date={articles[0].updatedAt}
-								tags={articles[0].tags}
-								ticketLink={articles[0].ticketLink}
-							/>
-						</div>
-
-						{articles.slice(1).map(article => (
-							<div className={styles.embla__slide}>
-								<ArticleCard
-									key={article._id}
-									title={article.title}
-									author={article.author}
-									date={article.updatedAt}
-									tags={article.tags}
-									size="lg"
-								/>
+						{articles.map((article, index) => (
+							<div
+								key={article._id}
+								className={styles.embla__slide}
+							>
+								{index === 0 ? (
+									<EventCard
+										title={article.title}
+										place={article.author}
+										date={article.updatedAt}
+										tags={article.tags}
+										ticketLink={article.ticketLink}
+									/>
+								) : (
+									<ArticleCard
+										title={article.title}
+										author={article.author}
+										date={article.updatedAt}
+										tags={article.tags}
+										size="lg"
+									/>
+								)}
 							</div>
-
 						))}
 					</div>
 					<div className={styles.embla__controls}>

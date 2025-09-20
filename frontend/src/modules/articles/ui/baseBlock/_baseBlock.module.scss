@@ -1,3 +1,5 @@
+@use '@/shared/styles/breakpoints' as *;
+
 .block {
 	display: flex;
 	flex-direction: column;
@@ -7,6 +9,10 @@
 		display: flex;
 		gap: 12px;
 		align-items: center;
+		width: 100%;
+		@include respond-to(mobile) {
+			justify-content: space-between;
+		}
 
 		p {
 			font-size: 1.6rem;

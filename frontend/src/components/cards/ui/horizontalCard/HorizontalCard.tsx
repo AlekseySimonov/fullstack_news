@@ -1,0 +1,47 @@
+import { Card, Empty, Tag } from "antd"
+import { ArticleCardProps } from './../../model/types';
+import styles from "./_horizontalCard.module.scss"
+import { formatDate } from "@/shared/utils";
+
+const HorizontalCard: React.FC<ArticleCardProps> = (props) => {
+	const renderCover = () => {
+		return props.image ? (
+			<img
+				className={styles.card_img}
+				alt="cover"
+				src={props.image}
+			/>
+		) : (
+			<Empty
+				image={Empty.PRESENTED_IMAGE_DEFAULT}
+				styles={{ image: { height: '100%' } }} 
+				className={styles.card_img}
+				description={false}
+			/>
+		);
+	};
+
+	return (
+		<Card
+			hoverable
+			className={styles.card}
+			classNames={{ body: styles.card_body }}
+		>
+			{renderCover()}
+			<div className={styles.card_content}>
+				{props.tags && <div className={styles.tags}>
+					{props.tags.map((tag, key) => (
+						<Tag key={key} className={styles.tag}>{tag}</Tag>
+					))}
+				</div>}
+				<h3>{props.title}</h3>
+				<div className={styles.card_footer}>
+					{props.date && <div className={styles.card_footer__date}>{formatDate(props.date)}</div>}
+					<div className={styles.card_footer__author}>By <strong>{props.author}</strong></div>
+				</div>
+			</div>
+		</Card>
+	)
+}
+
+export default HorizontalCard

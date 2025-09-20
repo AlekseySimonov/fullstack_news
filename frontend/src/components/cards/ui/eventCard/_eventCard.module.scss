@@ -1,15 +1,22 @@
 @use '../mixins' as *;
+@use "@/shared/styles/breakpoints" as *;
 
 .card {
 	@include card-base(444px, 628px);
-	background-color: var(--ant-color-error);
-	color: var(--ant-color-bg-base);
+
+	@include respond-to(mobile) {
+		width: calc(100vw - 20%);
+	};
+	& {
+		background-color: var(--ant-color-error);
+		color: var(--ant-color-bg-base);
+	}
 
 	.body {
 		@include card-body(34px, 0, 32px);
 		height: 100%;
 
-		.tag{
+		.tag {
 			border-color: inherit !important;
 		}
 

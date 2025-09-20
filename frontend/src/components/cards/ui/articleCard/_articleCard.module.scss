@@ -1,4 +1,5 @@
 @use '../mixins' as *;
+@use "@/shared/styles/breakpoints" as *;
 
 .card {
 	border: none;
@@ -16,11 +17,13 @@
 	}
 
 	&_lg {
-		@include card-base(560px, 628px);
-
 		.card_img {
 			height: 410px;
 		}
+		@include card-base(560px, 628px);
+		@include respond-to(mobile) {
+			width: calc(100vw - 20%);
+		};
 	}
 
 	&_img {
