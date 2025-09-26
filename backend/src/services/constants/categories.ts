@@ -1,11 +1,12 @@
+import { ValueOf } from "../../types";
+
 export const CATEGORIES = [
-	'Features',
-	'Pop Culture',
-	'Design',
-	'Fashion',
-	'Music',
-	'Events',
-	'Shop',
+	"features",
+	"pop culture",
+	"design",
+	"fashion",
+	"music",
+	"events",
 ] as const;
 
-export type Category = (typeof CATEGORIES)[number];
+export type CATEGORIES = ValueOf<typeof CATEGORIES>

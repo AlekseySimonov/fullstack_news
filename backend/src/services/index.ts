@@ -1,5 +1,1 @@
-import { CATEGORIES } from "./constants/categories";
-
-export const CONSTANTS = {
-	CATEGORIES,
-}
+export * from "./constants/categories";

@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { CONSTANTS } from '../services';
+import { CATEGORIES } from '../services';
 
 export const validateArticleRequest = (req: Request, res: Response, next: NextFunction) => {
 	const { category, ticketLink } = req.body;
 
-	if (category && !CONSTANTS.CATEGORIES.includes(category)) {
+	if (category && CATEGORIES.includes(category)) {
 		return res.status(400).json({
-			message: `Invalid category. Must be one of: ${CONSTANTS.CATEGORIES.join(', ')}`,
+			message: `Invalid category. Must be one of: ${CATEGORIES.join(', ')}`,
 		});
 	}
 

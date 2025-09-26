@@ -1,5 +1,5 @@
 import { body, param, query } from 'express-validator';
-import { CONSTANTS } from '../services';
+import { CATEGORIES } from '../services';
 
 const baseRules = {
   title: body('title')
@@ -16,7 +16,7 @@ const baseRules = {
 
   category: body('category')
     .optional()
-    .isIn(CONSTANTS.CATEGORIES)
+    .isIn(CATEGORIES)
     .isString()
     .withMessage('Category must be a string'),
 
