@@ -9,7 +9,7 @@ const renderCover = (image: string | undefined) => {
 			<div className={styles.card_img__wrapper}>
 				<Empty
 					image={Empty.PRESENTED_IMAGE_DEFAULT}
-					imageStyle={{ height: '100%' }}
+					styles={{ image: { height: '100%' } }}
 					description={false}
 					className={`${styles.card_img} ${styles.card_img__cover}`}
 				/>

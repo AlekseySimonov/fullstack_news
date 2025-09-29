@@ -9,8 +9,7 @@ interface CategoryListProps {
 }
 const CategoryList: React.FC<CategoryListProps> = ({ title, category }) => {
 
-	const { data: articles } = useArticles({ category }) ?? []
-	if (!articles || !articles.length) return null
+	const { data: articles = [] } = useArticles({ category });
 
 	return (
 			<BaseBlock title={title}>

@@ -18,9 +18,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 		onNextButtonClick
 	} = usePrevNextButtons({ emblaApi })
 
-	const { data: articles } = useArticles({ category }) ?? []
-
-	if (!articles || !articles.length) return null
+	const { data: articles = [] } = useArticles({ category });
 
 	return (
 		<BaseBlock title={title}>

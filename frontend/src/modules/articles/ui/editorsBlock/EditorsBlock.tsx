@@ -8,9 +8,7 @@ interface EditorsBlockProps {
 	category?: string,
 }
 const EditorsBlock: React.FC<EditorsBlockProps> = ({ title, category }) => {
-	const { data: articles } = useArticles() ?? []
-
-	if (!articles || !articles.length) return null
+	const { data: articles = [] } = useArticles({ category });
 
 	return (
 		<div className={styles.block}>

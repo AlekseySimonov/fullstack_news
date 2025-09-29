@@ -7,10 +7,7 @@ const MainPage = lazy(() => import("@/pages").then(module => ({ default: module.
 
 export const mainRoutes = {
 	path: "/",
-	element:
-		<Suspense fallback={<Spin />}>
-			<ContentLayout />
-		</Suspense>,
+	element: <ContentLayout />,
 	children: [
 		{ index: true, element: <Navigate to="main" replace /> },
 		{ path: "main", element: <MainPage /> },

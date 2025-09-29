@@ -3,7 +3,7 @@ import styles from "./_baseBlock.module.scss"
 import { ReactNode } from "react"
 
 interface BaseBlockProps {
-	title: string
+	title?: string
 	children?: ReactNode
 }
 
