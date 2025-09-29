@@ -21,6 +21,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ title, category }) => {
 							author={article.author}
 							date={article.updatedAt}
 							tags={article.tags}
+							image={article.imageUrl}
 							size='md'
 						/>
 					))}

@@ -8,7 +8,7 @@ export const FadeInSection: React.FC<PropsWithChildren> = ({ children }) => {
 			variants={fadeInVariants}
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.4 }}
+			viewport={{ once: true, amount: 0.2 }}
 		>
 			{children}
 		</motion.div>

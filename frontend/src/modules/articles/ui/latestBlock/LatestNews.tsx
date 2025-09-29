@@ -37,6 +37,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 					key={articles[0]._id}
 					title={articles[0].title}
 					author={articles[0].author}
+					image={articles[0].imageUrl}
 					date={articles[0].updatedAt}
 					tags={articles[0].tags}
 				/>
@@ -61,6 +62,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 						author={article.author}
 						date={article.updatedAt}
 						tags={article.tags}
+						image={article.imageUrl}
 						size='md'
 					/>
 				))}

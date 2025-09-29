@@ -45,7 +45,7 @@
     "Tag": {
       "marginXS": 8,
       "borderRadiusSM": 2,
-      "lineWidth": 3,
+      "lineWidth": 2,
       "lineHeightSM": 2,
       "defaultBg": "transparent"
     },

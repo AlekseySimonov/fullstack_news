@@ -2,31 +2,48 @@
 @use '@/shared/styles/breakpoints' as *;
 
 .card {
-	border: none;
 	background-color: inherit;
+	border-radius: var(--ant-border-radius-lg) !important;
 	@include card-base(100%);
 
+	&:hover {
+		box-shadow:
+			0 6px 16px 0 color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent),
+			0 3px 6px -4px color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent),
+			0 9px 28px 8px color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent);
+	}
+
 	&_body {
-		@include card-body($padding-inline: 10px, $padding-block: 10px);
+		@include card-body($padding-inline: 20px, $padding-block: 10px);
 		display: flex;
 		flex-direction: row;
 		gap: 16px;
+
+		.tag {
+			border-color: inherit !important
+		}
 
 		@include respond-to(desktop) {
 			flex-direction: row;
 			gap: 20px;
 			align-items: flex-start;
 		}
+
+		@include respond-to(mobile) {
+			flex-direction: column;
+		}
 	}
 
 	&_img {
-		min-height: 320px;
+		height: 320px;
+		min-width: 444px;
 		object-fit: cover;
 		display: block;
 		flex: 0 0 30%;
+		border-radius: var(--ant-border-radius-lg);
 
 		@include respond-to(mobile) {
-			min-height: 180px;
+			max-height: 250px;
 			flex: 0 0 100%;
 		}
 	}

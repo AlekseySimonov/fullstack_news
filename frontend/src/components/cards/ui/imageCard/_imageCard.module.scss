@@ -43,6 +43,10 @@
 			margin: 0;
 		}
 
+		.tag{
+			border-color: inherit !important
+		}
+
 		&_footer {
 			@include card-footer();
 

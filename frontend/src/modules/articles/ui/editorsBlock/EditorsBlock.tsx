@@ -19,6 +19,7 @@ const EditorsBlock: React.FC<EditorsBlockProps> = ({ title, category }) => {
 						title={article.title}
 						author={article.author}
 						date={article.updatedAt}
+						image={article.imageUrl}
 						tags={article.tags}
 						content={article.content}
 					/>

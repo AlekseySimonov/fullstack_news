@@ -8,6 +8,7 @@ export interface Article {
 	title: string;
 	category?: string;
 	author: string;
+	imageUrl?: string;
 	content: ArticleContentBlock[];
 	tags: string[];
 	ticketLink?: string;

@@ -3,8 +3,6 @@ import styles from "./_mainPage.module.scss"
 import { CategoryList, EventsCarousel, LatestNews } from "@/modules";
 import { EditorsBlock } from "@/modules/articles";
 import { FadeInSection } from "@/shared/styles/animations";
-import { Suspense } from "react";
-import { Loader } from "@/components/loader";
 
 const MainPage: React.FC = () => {
 

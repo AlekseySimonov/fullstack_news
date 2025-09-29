@@ -44,6 +44,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 										author={article.author}
 										date={article.updatedAt}
 										tags={article.tags}
+										image={article.imageUrl}
 										size="lg"
 									/>
 								)}
