@@ -1,7 +1,6 @@
 import { Hero } from "@/components"
 import styles from "./_mainPage.module.scss"
-import { CategoryList, EventsCarousel, LatestNews } from "@/modules";
-import { EditorsBlock } from "@/modules/articles";
+import { CategoryList, EventsCarousel, LatestNews, EditorsBlock } from "@/modules";
 import { FadeInSection } from "@/shared/styles/animations";
 
 const MainPage: React.FC = () => {
