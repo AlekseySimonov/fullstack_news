@@ -10,7 +10,7 @@ const ArticlesPage: React.FC = () => {
 	const { data: articles = [] } = useArticles({ category });
 	if (!articles || !articles.length) return null
 	return (
-		<div className={styles.page}>
+		<section className={styles.page}>
 			<h3>{category?.toUpperCase()}</h3>
 			<div className={styles.page_cards}>
 				{articles.map(article => (
@@ -26,7 +26,7 @@ const ArticlesPage: React.FC = () => {
 					/>
 				))}
 			</div>
-		</div>
+		</section>
 	)
 };
 

@@ -15,13 +15,13 @@ const BaseBlock: React.FC<BaseBlockProps> = ({
 }) => {
 
 	return (
-		<div className={styles.block}>
+		<section className={styles.block}>
 			<div className={styles.block_header}>
 				<h3>{title}</h3>
 				<Button type="default" href={blockHref}>View all</Button>
 			</div>
 			{children}
-		</div>
+		</section>
 	)
 }
 

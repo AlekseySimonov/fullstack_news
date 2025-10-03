@@ -4,7 +4,7 @@ import { links } from "@/shared/links";
 
 const FooterLayout: React.FC = () => {
 	return (
-		<div className={styles.footer}>
+		<footer className={styles.footer}>
 			<Row gutter={64} className={styles.footer_row}>
 				<Col className={styles.footer_left}>
 					<h1>Wild, <br /> Wired & <br />World</h1>
@@ -66,7 +66,7 @@ const FooterLayout: React.FC = () => {
 				</Col>
 
 			</Row>
-		</div>
+		</footer>
 	);
 }
 
