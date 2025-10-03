@@ -3,11 +3,16 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { errorHandler } from './middlewares';
 import router from './routes';
+import cors from "cors";
 
 dotenv.config();
 
+console.log("ENV loaded:", process.env.ENDPOINT_S3, process.env.BUCKET_NAME_S3);
+
+
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use('/api', router);
 app.use(errorHandler);

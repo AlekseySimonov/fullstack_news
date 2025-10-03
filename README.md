@@ -14,13 +14,20 @@
 news/
 │
 ├─ frontend/          # React + TypeScript приложение
-│  ├─ src/            # исходный код фронтенда
-│  ├─ public/         # статические файлы (index.html, favicon и др.)
-│  ├─ __config__/     # конфигурационные файлы приложения
+│  ├─ src/
+│  │  ├─ app/                # лобальные конфиги, провайдеры store, маршруты
+│  │  ├─ pages/              # страницы приложения (например, `ArticlesPage`)
+│  │  ├─ layouts/            # обёртки страниц, header, footer, sidebar
+│  │  ├─ modules/            # конкретные фичи, которые могут содержать UI, логику и api
+│  │  ├─ components/         # переиспользуемые UI-компоненты (кнопки, карточки, списки)
+│  │  ├─ shared/             # общие типы, утилиты, иконки, изображения, константы
+│  │  └─ index.ts            # исходный код фронтенда
+│  ├─ public/                # статические файлы (index.html, favicon и др.)
+│  ├─ __config__/            # конфигурационные файлы приложения
 │  ├─ webpack.config.js
 │  ├─ package.json
 │  ├─ tsconfig.json
-│  └─ .env             # конфигурация окружения
+│  └─ .env                   # конфигурация окружения
 │
 └─ backend/                  # Node.js + Express API (TypeScript)
    ├─ src/
@@ -84,6 +91,7 @@ npm install
 - Node.js 20
 - Express 5
 - MongoDB + Mongoose
+- Яндекс Облако Object Storage (S3 API) для хранения изображений
 - express-validator
 - Jest + ts-jest для тестов
 
@@ -93,6 +101,12 @@ npm install
 PORT=4000
 DB_URL=mongodb://localhost:27017/fullstack_news # ссылка у разработчиков
 SERVER_URL = http://localhost
+
+# Доступ к Yandex Cloud Object Storage
+ACCESS_KEY_S3=your-access-key # ключ у разработчиков
+SECRET_KEY_S3=your-secret-key # ключ у разработчиков
+BUCKET_NAME_S3=id-news-storage-s3
+ENDPOINT_S3=https://storage.yandexcloud.net
 ```
 
 ### Установка зависимостей
@@ -118,3 +132,4 @@ npm install
 - Управление тегами, категориями и авторами
 - Валидация входящих данных через express-validator
 - Единая обработка ошибок через errorHandler
+- Загрузка изображений: сохранение файлов в Yandex Cloud Object Storage (S3) и хранение ссылок в базе данных

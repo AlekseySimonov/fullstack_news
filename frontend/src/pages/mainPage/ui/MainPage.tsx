@@ -1,22 +1,29 @@
 import { Hero } from "@/components"
-import { fetcher } from "@/shared/api";
-import { useQuery } from "@tanstack/react-query";
 import styles from "./_mainPage.module.scss"
-import { CategoryBlock } from "@/modules";
+import { CategoryList, EventsCarousel, LatestNews, EditorsBlock } from "@/modules";
+import { FadeInSection } from "@/shared/styles/animations";
 
 const MainPage: React.FC = () => {
 
-  const { data: articles } = useQuery({
-    queryKey: ["articles"],
-    queryFn: () => fetcher("/articles/"),
-  });
-
   return (
     <div className={styles.main}>
-      <Hero />
-      <CategoryBlock title="Features"/>
+        <Hero />
+        <FadeInSection>
+          <CategoryList title="Features" category="features" />
+        </FadeInSection>
+
+        <FadeInSection>
+          <EventsCarousel title="Events" category="events" />
+        </FadeInSection>
+
+        <FadeInSection>
+          <LatestNews title="Latest news" category="sort=1" />
+        </FadeInSection>
+
+        <FadeInSection>
+          <EditorsBlock title="Editor's Top Picks" />
+        </FadeInSection>
     </div>
-    
   )
 }
 

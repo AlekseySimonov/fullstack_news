@@ -1,18 +1,17 @@
 import { ContentLayout } from "@/layouts";
-import { Spin } from "antd";
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Navigate } from "react-router";
+import { articlesRoutes } from "./articleRoutes";
+import { Base } from "@/layouts/base";
 
 const MainPage = lazy(() => import("@/pages").then(module => ({ default: module.MainPage })))
 
 export const mainRoutes = {
 	path: "/",
-	element:
-		<Suspense fallback={<Spin />}>
-			<ContentLayout />
-		</Suspense>,
+	element: <Base />,
 	children: [
 		{ index: true, element: <Navigate to="main" replace /> },
 		{ path: "main", element: <MainPage /> },
+		articlesRoutes,
 	],
 };

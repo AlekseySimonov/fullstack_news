@@ -1,1 +1,1 @@
-export { CategoryBlock } from "./categoryBlock";
+export { LatestNews, EventsCarousel, CategoryList, EditorsBlock } from "./articlesBlocks";

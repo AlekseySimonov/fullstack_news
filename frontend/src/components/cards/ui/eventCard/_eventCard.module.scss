@@ -1,0 +1,52 @@
+@use '../mixins' as *;
+@use "@/shared/styles/breakpoints" as *;
+
+.card {
+	@include card-base(444px, 628px);
+
+	@include respond-to(mobile) {
+		width: calc(100vw - 20%);
+	};
+	& {
+		background-color: var(--ant-color-error);
+		color: var(--ant-color-bg-base);
+	}
+
+	.body {
+		@include card-body(34px, 0, 32px);
+		height: 100%;
+
+		.tag {
+			border-color: inherit !important;
+		}
+
+		h3 {
+			font-size: 54px;
+			line-height: 120%;
+		}
+
+		.btn {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+
+			.btnTicket {
+				width: max-content;
+
+				&:hover {
+					color: var(--ant-color-primary);
+					border-color: var(--ant-color-primary);
+					background-color: var(--ant-color-bg-base);
+				}
+			}
+		}
+
+		&_footer {
+			@include card-footer();
+
+			& {
+				margin-top: auto;
+			}
+		}
+	}
+}

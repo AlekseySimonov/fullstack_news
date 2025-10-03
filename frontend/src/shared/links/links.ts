@@ -1,10 +1,9 @@
 export const menuLinks = [
-	{ title: "FEATURES", link: "/features" },
-	{ title: "POP CULTURE", link: "/pop-culture" },
-	{ title: "DESIGN", link: "/design" },
-	{ title: "FASHION", link: "/fashion" },
-	{ title: "MUSIC", link: "/music" },
-	{ title: "EVENTS", link: "/events" },
+	{ title: "FEATURES", link: "/articles/features" },
+	{ title: "DESIGN", link: "/articles/design" },
+	{ title: "FASHION", link: "/articles/fashion" },
+	{ title: "MUSIC", link: "/articles/music" },
+	{ title: "EVENTS", link: "/articles/events" },
 ];
 
 export const infoLinks = [

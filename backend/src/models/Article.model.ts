@@ -1,10 +1,12 @@
 import { HydratedDocument, InferSchemaType, model, Schema } from 'mongoose';
+import { CATEGORIES } from '../services';
 
 const ArticleSchema = new Schema(
   {
     title: { type: String, required: true },
-    category: { type: String },
+    category: { type: String, enum: CATEGORIES},
     author: { type: String, required: true },
+    imageUrl: { type: String },
     content: {
       type: [
         {
@@ -15,9 +17,12 @@ const ArticleSchema = new Schema(
       required: true,
     },
     tags: {
-      type: { String },
+      type: [String] ,
       set: (tags: string[]) => [...new Set(tags)],
     },
+    ticketLink: { type: String },
+    eventDate: { type: Date },
+    isEditorsPick: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

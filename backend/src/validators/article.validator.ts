@@ -1,4 +1,5 @@
-import { body, param } from 'express-validator';
+import { body, param, query } from 'express-validator';
+import { CATEGORIES } from '../services';
 
 const baseRules = {
   title: body('title')
@@ -15,6 +16,7 @@ const baseRules = {
 
   category: body('category')
     .optional()
+    .isIn(CATEGORIES)
     .isString()
     .withMessage('Category must be a string'),
 
@@ -41,6 +43,16 @@ const baseRules = {
     .withMessage('Tags must be an array of strings')
     .custom((arr) => arr.every((t: unknown) => typeof t === 'string'))
     .withMessage('Each tag must be a string'),
+
+  ticketLink: body('ticketLink')
+    .optional()
+    .isURL()
+    .withMessage('ticketLink must be a valid URL'),
+
+  isEditorsPick: body('isEditorsPick')
+    .optional()
+    .isBoolean()
+    .withMessage('isEditorsPick must be a boolean'),
 };
 
 export const createArticleValidator = [
@@ -50,6 +62,7 @@ export const createArticleValidator = [
   baseRules.description,
   baseRules.content,
   baseRules.tags,
+  baseRules.ticketLink.optional(),
 ];
 
 export const updateArticleValidator = [
@@ -60,4 +73,24 @@ export const updateArticleValidator = [
   baseRules.description.optional(),
   baseRules.content.optional(),
   baseRules.tags.optional(),
+  baseRules.ticketLink.optional(),
+  baseRules.isEditorsPick.optional(),
+];
+
+export const articleQueryValidator = [
+  query("page").optional().isInt({ min: 1 }).withMessage("Page must be >= 1"),
+  query("limit")
+    .optional()
+    .isInt({ min: 1, max: 100 })
+    .withMessage("Limit must be between 1 and 100"),
+  query("sortBy")
+    .optional()
+    .isIn(["category", "tags", "createdAt", "title", "isEditorsPick"])
+    .withMessage("Invalid sort field"),
+  query("order")
+    .optional()
+    .isIn(["asc", "desc"])
+    .withMessage("Order must be asc or desc"),
+  query("search").optional().isString(),
+  query("category").optional().isString(),
 ];

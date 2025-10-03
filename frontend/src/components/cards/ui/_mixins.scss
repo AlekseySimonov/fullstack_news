@@ -1,0 +1,66 @@
+@mixin card-base($width: auto, $height: auto) {
+	border: none;
+	width: $width;
+	height: $height;
+	display: flex;
+	flex-direction: column;
+	color: inherit;
+}
+
+@mixin card-body($padding-inline: 12px, $padding-block: 0, $gap: 16px) {
+	padding-inline: $padding-inline !important;
+	padding-block: $padding-block !important;
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+	text-align: start;
+
+	.tags {
+		overflow: hidden;
+		display: flex;
+	}
+
+	.tag {
+		color: inherit !important;
+		background: transparent !important;
+	}
+
+	h3 {
+		font-size: 24px;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: inherit !important;
+	}
+}
+
+@mixin card-footer {
+	display: flex;
+	gap: 8px;
+	font-size: 14px;
+
+	strong {
+		font-weight: 600;
+	}
+
+	&__place,
+	&__author {
+		position: relative;
+		padding-left: 16px;
+
+		&::before {
+			content: "•";
+			position: absolute;
+			left: 0;
+			top: 4px;
+			line-height: 1;
+			color: inherit;
+		}
+	}
+
+	&__date {
+		opacity: 25%;
+	}
+}

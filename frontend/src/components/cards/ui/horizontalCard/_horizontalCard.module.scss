@@ -1,0 +1,97 @@
+@use '../mixins' as *;
+@use '@/shared/styles/breakpoints' as *;
+
+.card {
+	background-color: inherit;
+	border-radius: var(--ant-border-radius-lg) !important;
+	@include card-base(100%);
+
+	&:hover {
+		box-shadow:
+			0 6px 16px 0 color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent),
+			0 3px 6px -4px color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent),
+			0 9px 28px 8px color-mix(in srgb, var(--ant-color-bg-base) 25%, transparent);
+	}
+
+	&_body {
+		@include card-body($padding-inline: 20px, $padding-block: 10px);
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+
+		.tag {
+			border-color: inherit !important
+		}
+
+		@include respond-to(desktop) {
+			flex-direction: row;
+			gap: 20px;
+			align-items: flex-start;
+		}
+
+		@include respond-to(mobile) {
+			flex-direction: column;
+		}
+	}
+
+	&_img {
+		height: 320px;
+		min-width: 444px;
+		object-fit: cover;
+		display: block;
+		flex: 0 0 30%;
+		border-radius: var(--ant-border-radius-lg);
+
+		@include respond-to(mobile) {
+			max-height: 250px;
+			flex: 0 0 100%;
+		}
+	}
+
+	&_content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		min-width: 0;
+	}
+
+	&_text {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		h4 {
+			font-weight: 500;
+			margin: 0;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			text-overflow: ellipsis;
+		}
+
+		p {
+			margin: 0;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 5;
+			text-overflow: ellipsis;
+		}
+
+		@include respond-to(desktop) {
+			flex: 0 0 30%;
+		}
+	}
+
+	&_footer {
+		flex-direction: column;
+		gap: 8px;
+		@include card-footer();
+
+		@include respond-to(mobile) {
+			margin-top: auto;
+		}
+	}
+}

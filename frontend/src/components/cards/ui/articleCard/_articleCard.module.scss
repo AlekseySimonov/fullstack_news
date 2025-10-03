@@ -1,0 +1,60 @@
+@use '../mixins' as *;
+@use "@/shared/styles/breakpoints" as *;
+
+.card {
+	border: none;
+
+	&_md {
+		@include card-base(328px, 432px);
+
+		.card_img {
+			height: 240px;
+		}
+	}
+
+	&_sm {
+		@include card-base(444px);
+	}
+
+	&_lg {
+		.card_img {
+			height: 410px;
+		}
+		@include card-base(560px, 628px);
+		@include respond-to(mobile) {
+			width: calc(100vw - 20%);
+		};
+	}
+
+	&_img {
+		border-radius: 8px;
+		width: 100%;
+		object-fit: cover;
+
+		&__cover {
+			object-fit: cover;
+		}
+
+		&__scaleDown {
+			object-fit: scale-down;
+		}
+	}
+
+	&_body {
+		@include card-body();
+		height: 100%;
+	}
+
+	.tags {
+		overflow: hidden;
+		display: flex;
+	}
+
+	&_footer {
+		@include card-footer();
+
+		& {
+			margin-top: auto;
+		}
+	}
+}

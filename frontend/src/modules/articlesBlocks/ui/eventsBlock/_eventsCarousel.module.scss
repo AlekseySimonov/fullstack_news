@@ -1,0 +1,41 @@
+@use "@/shared/styles/breakpoints" as *;
+
+.embla {
+	max-width: 100%;
+	margin: auto;
+	overflow-x: hidden;
+	--slide-height: 19rem;
+	--slide-spacing: 10px;
+	--slide-size: max-content;
+	@include respond-to(mobile) {
+		--slide-size: 90%;
+	}
+}
+
+.embla__viewport {
+	overflow: visible !important;
+}
+
+.embla__container {
+	display: flex;
+	touch-action: pan-y pinch-zoom;
+	margin-left: calc(var(--slide-spacing) * -1);
+	padding-right: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+	transform: translate3d(0, 0, 0);
+	flex: 0 0 var(--slide-size);
+	min-width: 0;
+	padding-left: var(--slide-spacing);
+}
+
+.embla__controls {
+	margin-top: 1.8rem;
+}
+
+.embla__buttons {
+	display: flex;
+	gap: 0.6rem;
+	align-items: center;
+}

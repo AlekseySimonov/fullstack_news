@@ -2,15 +2,20 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	overflow: hidden;
 
 	height: 64px;
 	padding-inline: 0;
 	background: inherit;
 
 	&_logo {
+		cursor: pointer;
 		flex: 0 0 auto;
 		display: flex;
 		align-items: center;
+		img{
+			width: 60px;
+		}
 	}
 
 
