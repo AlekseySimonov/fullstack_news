@@ -30,6 +30,7 @@ const HorizontalCard: React.FC<ArticleCardProps> = (props) => {
 			hoverable
 			className={styles.card}
 			classNames={{ body: styles.card_body }}
+			onClick={props.onCardClick}
 		>
 			{renderCover()}
 			<div className={styles.card_content}>

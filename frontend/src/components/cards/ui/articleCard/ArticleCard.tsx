@@ -27,6 +27,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
       className={`${styles.card} ${styles[`card_${props.size}`]}`}
       cover={renderCover()}
       classNames={{ body: styles.card_body }}
+      onClick={props.onCardClick}
     >
       {props.tags && <div className={styles.tags}>
         {props.tags.map((tag, key) => (

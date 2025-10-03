@@ -1,8 +1,9 @@
 import styles from "./_latestNews.module.scss"
 import { ArticleCard, HorizontalCard, ImageCard } from "@/components"
-import { useArticles } from "../../api"
+import { useArticles } from "@/shared/api"
 import BaseBlock from "../baseBlock/BaseBlock"
 import { useBreakpoint } from "@/shared/hooks"
+import { useNavigate } from "react-router"
 
 interface LatestNewsProps {
 	title: string,
@@ -10,6 +11,7 @@ interface LatestNewsProps {
 }
 
 const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
+	const navigate = useNavigate()
 
 	const { data: articles } = useArticles() ?? []
 	const bp = useBreakpoint()
@@ -17,7 +19,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 	if (!articles || !articles.length) return null
 
 	if (bp === 'tablet' || bp === 'mobile') return (
-		<BaseBlock title={title}>
+		<BaseBlock title={title} blockHref={'articles/'}>
 			{articles.map(article => (
 				<HorizontalCard
 					key={article._id}
@@ -25,6 +27,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 					author={article.author}
 					date={article.updatedAt}
 					tags={article.tags}
+					onCardClick={() => navigate(`/articles/${article._id}`)}
 				/>
 			))}
 		</BaseBlock>
@@ -40,6 +43,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 					image={articles[0].imageUrl}
 					date={articles[0].updatedAt}
 					tags={articles[0].tags}
+					onCardClick={() => navigate(`/articles/${articles[0]._id}`)}
 				/>
 				<div className={styles.start__list}>
 					{articles.slice(0, 3).map(article => (
@@ -50,6 +54,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 							date={article.updatedAt}
 							tags={article.tags}
 							size='sm'
+							onCardClick={() => navigate(`/articles/${articles[0]._id}`)}
 						/>
 					))}
 				</div>
@@ -64,6 +69,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ title, category }) => {
 						tags={article.tags}
 						image={article.imageUrl}
 						size='md'
+						onCardClick={() => navigate(`/articles/${articles[0]._id}`)}
 					/>
 				))}
 			</div>

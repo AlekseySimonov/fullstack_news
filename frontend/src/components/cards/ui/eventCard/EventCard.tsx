@@ -6,7 +6,12 @@ import { EventCardProps } from "../../model/types"
 
 const EventCard: React.FC<EventCardProps> = (props) => {
 	return (
-		<Card hoverable className={styles.card} classNames={{ body: styles.body }}>
+		<Card
+			hoverable
+			className={styles.card}
+			classNames={{ body: styles.body }}
+			onClick={props.onCardClick}
+		>
 			{props.tags && <div className={styles.tags}>
 				{props.tags.map((tag, key) => (
 					<Tag key={key} className={styles.tag}>{tag}</Tag>

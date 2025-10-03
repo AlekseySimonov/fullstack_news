@@ -4,6 +4,7 @@ export interface BaseCardProps {
 	title: string;
 	tags?: string[];
 	date?: string;
+	onCardClick?: () => void | Promise<void>;
 }
 
 export interface ArticleCardProps extends BaseCardProps {

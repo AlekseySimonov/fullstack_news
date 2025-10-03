@@ -1,3 +1,5 @@
+import { Response } from './GeneralTypes';
+
 export interface ArticleContentBlock {
 	subtitle?: string;
 	text: string;
@@ -17,9 +19,4 @@ export interface Article {
 	updatedAt: string;
 }
 
-export interface ArticlesResponse {
-	data: Article[];
-	page: number;
-	pages: number;
-	total: number;
-}
+export type ArticlesResponse = Response<Article[]>

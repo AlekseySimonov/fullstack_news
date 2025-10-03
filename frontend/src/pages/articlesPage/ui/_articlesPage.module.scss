@@ -1,0 +1,35 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	align-items: start;
+	h3{
+		font-size: 34px;
+		font-weight: 400;
+	}
+	&_cards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 32px;
+		width: 100%;
+
+		>* {
+			flex: 1 1 calc((100% - 64px) / 3);
+			max-width: calc((100% - 64px) / 3);
+		}
+
+		@media (max-width: 1024px) {
+			>* {
+				flex: 1 1 calc((100% - 32px) / 2);
+				max-width: calc((100% - 32px) / 2);
+			}
+		}
+
+		@media (max-width: 600px) {
+			>* {
+				flex: 1 1 100%;
+				max-width: 100%;
+			}
+		}
+	}
+}

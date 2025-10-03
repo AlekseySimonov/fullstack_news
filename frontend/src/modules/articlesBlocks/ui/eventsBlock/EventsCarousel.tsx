@@ -2,13 +2,15 @@ import { ArticleCard, EventCard, NextButton, PrevButton, usePrevNextButtons } fr
 import React from 'react'
 import styles from "./_eventsCarousel.module.scss"
 import useEmblaCarousel from 'embla-carousel-react'
-import { useArticles } from '../../api'
+import { useArticles } from '@/shared/api'
 import BaseBlock from '../baseBlock/BaseBlock'
+import { useNavigate } from 'react-router'
 interface EventsCarouselProps {
 	title: string,
 	category: string,
 }
 const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
+	const navigate = useNavigate()
 	const [emblaRef, emblaApi] = useEmblaCarousel()
 
 	const {
@@ -21,7 +23,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 	const { data: articles = [] } = useArticles({ category });
 
 	return (
-		<BaseBlock title={title}>
+		<BaseBlock title={title} blockHref={`articles/${category}`}>
 			<section className={styles.embla}>
 				<div className={styles.embla__viewport} ref={emblaRef}>
 					<div className={styles.embla__container}>
@@ -37,6 +39,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 										date={article.updatedAt}
 										tags={article.tags}
 										ticketLink={article.ticketLink}
+										onCardClick={() => navigate(`/articles/${articles[0]._id}`)}
 									/>
 								) : (
 									<ArticleCard
@@ -46,6 +49,7 @@ const EventsCarousel: React.FC<EventsCarouselProps> = ({ title, category }) => {
 										tags={article.tags}
 										image={article.imageUrl}
 										size="lg"
+										onCardClick={() => navigate(`/articles/${articles[0]._id}`)}
 									/>
 								)}
 							</div>

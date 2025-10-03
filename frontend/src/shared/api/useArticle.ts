@@ -1,6 +1,6 @@
 import { fetcher } from "@/shared/api";
-import { Article, ArticlesResponse } from "@/shared/types";
 import { useQuery } from "@tanstack/react-query";
+import { Article, ArticlesResponse } from "../types";
 
 interface UseArticlesProps {
 	category?: string;

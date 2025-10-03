@@ -29,30 +29,29 @@ const renderCover = (image: string | undefined) => {
 		</div>
 	);
 };
-const ImageCard: React.FC<ImageCardProps> = ({
-	title,
-	tags,
-	author,
-	date,
-	image
-}) => {
+const ImageCard: React.FC<ImageCardProps> = (props) => {
 	return (
-		<Card hoverable className={styles.card} classNames={{ body: styles.body }}>
-			{renderCover(image)}
+		<Card
+			hoverable
+			className={styles.card}
+			classNames={{ body: styles.body }}
+			onClick={props.onCardClick}
+		>
+			{renderCover(props.image)}
 			<div className={styles.card_content}>
-				{tags && (
+				{props.tags && (
 					<div className={styles.tags}>
-						{tags.map((tag, key) => (
+						{props.tags.map((tag, key) => (
 							<Tag key={key} className={styles.tag}>{tag}</Tag>
 						))}
 					</div>
 				)}
 
-				<h3>{title}</h3>
+				<h3>{props.title}</h3>
 
 				<div className={styles.body_footer}>
-					{date && <div className={styles.body_footer__date}>{formatDate(date)}</div>}
-					<div className={styles.body_footer__place}>By <strong>{author}</strong></div>
+					{props.date && <div className={styles.body_footer__date}>{formatDate(props.date)}</div>}
+					<div className={styles.body_footer__place}>By <strong>{props.author}</strong></div>
 				</div>
 			</div>
 		</Card>
